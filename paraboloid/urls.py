@@ -15,6 +15,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    (r'^$', 'plot.views.home'),
-    (r'^paraboloid.png$', 'plot.views.pimage'),
+    (r'^paraboloid/$', 'plot.views.home'),
+    (r'^paraboloid/paraboloid.png$', 'plot.views.pimage'),
 )
