@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  
+  <body>
+    <div id="instructions" style="border:3px solid;width:100%;position:relative;">
+      <div id="text" style="display:inline-block;top:0px;left:0px; width:auto;border:1px solid;padding-right:400px">
+        <p>To build your paraboloid, just choose the distance from the vertex to the focus, f.
+        Then click calculate, download the image, print it, cut it, and put some thumbtacks, staples, glue or whatever you prefer to glue the paper.
+        Note that the paper does not need to be circular, a normal A4 will work fine.</p>
+        <p>Also, note that if just after printing and before cutting, you glue an aluminium foil on the other side, and then leave that in the concave side, you will get a nice electromagnetic radiation concentrator.</p>
+        <p>I cut the paper as shown by the dashed lines in this figure (perpendicular to the source line and tangent to the end line), and then join the two parts of the paraboloid together, putting one piece of excess paper above and the next below and so on, if you understand me. If you have suggestions about how to explain this better send them to me please.</p>
+        <p>You can also change the range of values for x, the shape of the cutout in case you are not going to use a normal printer and a paper, and the image size in inches. The limits are:</p>
+        <div id="limits">
+        0.001 &lt; F &lt; 100 - default 3<br />
+        1 &lt; Xran &lt; 5000 - default 100<br />
+        1 &lt; Size &lt; 100 - default 10<br />
+        </div>
+        <div class="inputform" style="border:10px solid;position:absolute;right:300px;">
+          <form action="" method="get">
+            <ul>{{ dataform.as_ul }}</ul>
+          <input type="submit" value="Go"/>
+          </form>
+        </div>
+      </div>
+      
+      <div id="png" style="margin-top:20px;">
+        <a href="paraboloid.png?{% if f %}f={{ f }}{% endif %}{% if xran %}&xran={{ xran }}{% endif %}{% if size %}&size={{ size }}{% endif %}{% if square %}&square={{ square }}{% endif %}&download=True">Download the image</a><br />
+        <img src="paraboloid.png?{% if f %}f={{ f }}{% endif %}{% if xran %}&xran={{ xran }}{% endif %}{% if size %}&size={{ size }}{% endif %}{% if square %}&square={{ square }}{% endif %}" />
+      </div>
+      <div id="right" style="display:inline-block;width:300px;border:1px solid;position:absolute;top:0px;right:0px;">
+
+      <div id="image">
+        <img src="/static/cutRegion300.png" />
+      </div>
+      <div id="banner" style="border:1px solid;width:300px;height:600px;float:right;">
+        <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-3695546081570624";
+          /* p-right */
+          google_ad_slot = "4278464274";
+          google_ad_width = 300;
+          google_ad_height = 600;
+          //-->
+        </script>
+        <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>
+
