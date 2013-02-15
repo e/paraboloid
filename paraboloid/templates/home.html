@@ -23,15 +23,15 @@
       <div id="text" style="display:inline-block;top:0px;left:0px; width:auto;padding-right:330px">
         <h1>{% trans "How to build a paraboloid" %}</h1> {% trans "you can contact me at m @ rcosbartolo.me" %}
           <div style="float:right;margin-right:20px;">
-            <form name="setLangEnglish" style="display:inline" action="/i18n/setlang/" method="POST">{% csrf_token %}
+            <form name="setLangEnglish" style="display:inline" action="/paraboloid/i18n/setlang/" method="POST">{% csrf_token %}
                 <input name="next" type="hidden" value="/paraboloid" />
                 <input type="hidden" name="language" value="en" />
                 <a href="#" onclick="document.setLangEnglish.submit();return false;">English</a>
             </form>
-            <form style="display:inline" name="setLangDutch" action="/i18n/setlang/" method="POST">{% csrf_token %}
+            <form style="display:inline" name="setLangSpanish" action="/paraboloid/i18n/setlang/" method="POST">{% csrf_token %}
                 <input name="next" type="hidden" value="/paraboloid" />
                 <input type="hidden" name="language" value="es" />
-                <a href="#" onclick="document.setLangDutch.submit();return false;">Español</a>
+                <a href="#" onclick="document.setLangSpanish.submit();return false;">Español</a>
             </form>
           </div>
         <p>{% blocktrans %}To build your paraboloid, just choose the distance from the vertex to the focus, f.

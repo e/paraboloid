@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     (r'^paraboloid/$', 'plot.views.home'),
     (r'^paraboloid/paraboloid.png$', 'plot.views.pimage'),
-    (r'^i18n/', include('django.conf.urls.i18n')),
+    (r'^paraboloid/i18n/', include('django.conf.urls.i18n')),
 )
