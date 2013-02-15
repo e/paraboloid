@@ -1,6 +1,6 @@
 # Django settings for paraboloid project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -29,6 +29,11 @@ TIME_ZONE = 'America/Chicago'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
+ugettext = lambda s: s
+LANGUAGES = (
+        ('en', ugettext(u'English')),
+        ('es', ugettext(u'Spanish')),
+)
 
 SITE_ID = 1
 
@@ -89,8 +94,9 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -151,3 +157,8 @@ LOGGING = {
         },
     }
 }
+
+LOCALE_PATHS = (
+        '/home/marcos/w/p/paraboloid/locale/', 
+)
+

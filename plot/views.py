@@ -1,5 +1,8 @@
 from __future__ import division
 from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.views.decorators.csrf import csrf_protect
+from django.utils import translation
 import django
     
 from math import log, sqrt, pi, sin, cos
@@ -9,6 +12,9 @@ from matplotlib.ticker import FixedLocator
 
 from plot.forms import DataForm
 
+from paraboloid.settings import LANGUAGES
+
+@csrf_protect
 def home(request):
     f = request.GET.get('f') or 3
     xran = request.GET.get('xran') or 100
@@ -46,8 +52,11 @@ def home(request):
             'size': size,
             'dataform': form,
             'shape': shape,
+            'LANGUAGES': LANGUAGES,
     }
-    return render_to_response('home.html', context)
+    translation.activate(translation.get_language())
+    return render_to_response('home.html', context, 
+            context_instance=RequestContext(request))
 
 
 def pimage(request):
