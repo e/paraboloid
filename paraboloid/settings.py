@@ -1,4 +1,6 @@
 # Django settings for paraboloid project.
+import os.path
+PWD = os.path.dirname(os.path.realpath(__file__))
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -159,6 +161,6 @@ LOGGING = {
 }
 
 LOCALE_PATHS = (
-        '/home/marcos/w/p/paraboloid/locale/', 
+        os.path.join(PWD, '../locale'),
 )
 
