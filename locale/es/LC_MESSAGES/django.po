@@ -62,7 +62,7 @@ msgstr ""
 "montas el recortable con el papel de plata en la cara cóncava, toda la "
 "radiación electromagnética que incida sobre esa cara en dirección paralela "
 "al eje de simetría del paraboloide se concentrará en el foco. Esto sirve "
-"para hacer concentradores solares, antenas..."
+"para construir concentradores solares, antenas..."
 
 #: paraboloid/templates/home.html:41
 msgid ""
