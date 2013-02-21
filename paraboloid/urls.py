@@ -15,7 +15,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
+    (r'^paraboloid/((?P<f>[\d.]+)|)/((?P<xran>[\d.]+)|)/((?P<size>[\d.]+)|)/((?P<shape>(square|circle))|)/$', 'plot.views.home'),
+    (r'^paraboloid/paraboloid.png/((?P<f>[\d.]+)|)/((?P<xran>[\d.]+)|)/((?P<size>[\d.]+)|)/((?P<shape>(square|circle))|)/((?P<download>download)/|)$', 'plot.views.pimage'),
     (r'^paraboloid/$', 'plot.views.home'),
-    (r'^paraboloid/paraboloid.png$', 'plot.views.pimage'),
     (r'^paraboloid/i18n/', include('django.conf.urls.i18n')),
 )

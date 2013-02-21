@@ -1,5 +1,5 @@
 from __future__ import division
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
 from django.utils import translation
@@ -15,11 +15,10 @@ from plot.forms import DataForm
 from paraboloid.settings import LANGUAGES
 
 @csrf_protect
-def home(request):
-    f = request.GET.get('f') or 3
-    xran = request.GET.get('xran') or 100
-    size = request.GET.get('size') or 10
-    shape = request.GET.get('shape')
+def home(request, f=3, xran=100, size=10, shape='square'):
+    f = f or 3
+    xran = xran or 100
+    size = size or 10
     try:
         f = float(f)
         if f > 100:
@@ -45,7 +44,11 @@ def home(request):
     except ValueError:
         size = 10
 
-    form = DataForm(initial=request.GET)
+    form = DataForm(initial={
+            'f': f,
+            'xran': xran,
+            'size': size,
+            })
     context = {
             'f': f,
             'xran': xran,
@@ -54,12 +57,23 @@ def home(request):
             'shape': shape,
             'LANGUAGES': LANGUAGES,
     }
+    if request.method == 'POST':
+        p = request.POST
+        print p
+        fs = str(p.get('f')) + '/'
+        xrans = str(p.get('xran')) + '/'
+        sizes = str(p.get('size')) + '/'
+        shapes = p.get('shape') + '/'
+        return redirect('/paraboloid/' + fs + xrans + sizes + shapes)
+        #return redirect(home, f=p.get('f'), xran=p.get('xran'),
+         #        size=p.get('size'), shape=p.get('shape'))
+
     translation.activate(translation.get_language())
     return render_to_response('home.html', context, 
             context_instance=RequestContext(request))
 
 
-def pimage(request):
+def pimage(request, f, xran, size, shape, download):
     px = []
     py = []
     r = []
@@ -67,10 +81,10 @@ def pimage(request):
     c = []
     x45 = []
     y45 = []
-    f = request.GET.get('f') or 3
-    xran = request.GET.get('xran') or 100
-    size = request.GET.get('size') or 10
-    shape = request.GET.get('shape') or "square"
+    f = f or 3
+    xran = xran or 100
+    size = size or 10
+    shape = shape or "square"
     try:
         f = float(f)
         if f > 100:
@@ -79,7 +93,6 @@ def pimage(request):
             f = 0.001
     except ValueError:
         f = 3
-    xran = request.GET.get('xran') or 100
 
     try:
         xran = int(xran)
@@ -153,7 +166,7 @@ def pimage(request):
         ax.set_xlim(x[0], -x[0])
         ax.set_ylim(x[0], -x[0])
 
-    if request.GET.get('download'):
+    if download == 'download':
         response['Content-Disposition'] = 'attachment; filename="paraboloid.png"'
 
 #    import code;code.interact(local=locals())
