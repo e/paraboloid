@@ -46,7 +46,6 @@
         1 &lt; Size &lt; 100 - {% trans "default" %} 10<br />
         </div>
         <div class="inputform" style="margin-top:10px;position:absolute;left:50px;">
-          <!--form action="/paraboloid/{% if form.f %}/{{ form.f }}{% endif %}{% if form.xran %}/{{ form.xran }}{% endif %}{% if form.size %}/{{ form.size }}{% endif %}{% if form.shape %}/{{ form.shape }}{% endif %}" method="POST">{% csrf_token %}-->
           <form action="" method="POST">{% csrf_token %}
             <ul>{{ dataform.as_ul }}</ul>
           <input type="submit" value="Go"/>

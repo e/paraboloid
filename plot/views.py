@@ -15,7 +15,7 @@ from plot.forms import DataForm
 from paraboloid.settings import LANGUAGES
 
 @csrf_protect
-def home(request, f=3, xran=100, size=10, shape='square'):
+def home(request, f=3.0, xran=100, size=10, shape='square'):
     f = f or 3
     xran = xran or 100
     size = size or 10
@@ -59,7 +59,6 @@ def home(request, f=3, xran=100, size=10, shape='square'):
     }
     if request.method == 'POST':
         p = request.POST
-        print p
         fs = str(p.get('f')) + '/'
         xrans = str(p.get('xran')) + '/'
         sizes = str(p.get('size')) + '/'
@@ -86,6 +85,11 @@ def pimage(request, f, xran, size, shape, download):
     size = size or 10
     shape = shape or "square"
     try:
+        try:
+            f = f.replace(',', '.')
+        except:
+            pass
+
         f = float(f)
         if f > 100:
             f = 100
