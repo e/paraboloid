@@ -29,8 +29,8 @@ def home(request, f=3.0, xran=100, size=10, shape='square'):
         f = 3
     try:
         xran = int(xran)
-        if xran > 5000:
-            xran = 5000
+        if xran > 400:
+            xran = 400
         if xran < 1:
             xran = 1
     except ValueError:
@@ -100,8 +100,8 @@ def pimage(request, f, xran, size, shape, download):
 
     try:
         xran = int(xran)
-        if xran > 5000:
-            xran = 5000
+        if xran > 400:
+            xran = 400
     except ValueError:
         xran = 50
 
